@@ -31,10 +31,6 @@ public class Frame {
 	
 	public int throwBall(int ball) {
 		this.pin -= ball;
-		//볼을 2번 이상 던진 경우 남은 핀과 상관없이 0을 반환해 현재 프레임 종료
-		if(ballList.size() > 1) {
-			return 0;
-		}
 		ballList.add(ball);
 		//스트라이크인 경우 타입을 변경한 뒤에 pin 0를 리턴해 현재 프레임 종료
 		//스페어인경우도 타입을 변경한 뒤 pin 0를 리턴해 현재 프레임 종료
@@ -42,6 +38,10 @@ public class Frame {
 			this.type = Type.STRIKE;
 		}else if(checkSpare(pin)) {
 			this.type = Type.SPARE;
+		}
+		//볼을 2번 이상 던진 경우 남은 핀과 상관없이 0을 반환해 현재 프레임 종료
+		if(ballList.size() > 1) {
+			return 0;
 		}
 		return pin;
 	}

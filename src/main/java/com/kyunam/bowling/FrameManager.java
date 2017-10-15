@@ -35,7 +35,6 @@ public class FrameManager {
 		if (remainPin == 0) {
 			frameList.add(currentFrame);
 			createFrame();
-			return remainPin;
 		}
 		return remainPin;
 	}

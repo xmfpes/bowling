@@ -2,6 +2,8 @@ package com.kyunam.bowling;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,14 +15,14 @@ public class bowlingTest {
 		bowlingManager = new BowlingManager();
 	}
 
-	@Test
-	public void bowlingManagerStartGameTest() {
-		String str = "PJS,KKN,KDS";
-		bowlingManager.startGame(str);
-		for (int i = 0; i < 3; i++) {
-			System.out.println(bowlingManager.getUser(i).getUserName());
-		}
-	}
+//	@Test
+//	public void bowlingManagerStartGameTest() {
+//		String str = "PJS,KKN,KDS";
+//		bowlingManager.startGame(str);
+//		for (int i = 0; i < 3; i++) {
+//			System.out.println(bowlingManager.getUser(i).getUserName());
+//		}
+//	}
 
 	@Test
 	public void frameManagerThrowBallTest() {
@@ -47,6 +49,28 @@ public class bowlingTest {
 		}
 		normalManager.printFrameList();
 		System.out.println();
+	}
+	
+	@Test
+	public void bowlingManagerGameManagementTest() {
+		System.out.println("GameManagementTest");
+		String str = "PJS,KKN,KDS";
+		bowlingManager.startGame(str);
+		int pin = 10;
+		while(!bowlingManager.isEndGame()) {
+			Random random = new Random();
+			int ball = random.nextInt(pin+1);
+			pin-=ball;
+			int check = bowlingManager.throwBallCurrentTurn(ball);
+			if(check==0) {
+				pin = 10;
+			}
+		}
+		for (int i = 0; i < 3; i++) {
+			System.out.println("user" + i);
+			bowlingManager.getUser(i).getFrameManager().printFrameList();
+			System.out.println();
+		}
 	}
 
 }
