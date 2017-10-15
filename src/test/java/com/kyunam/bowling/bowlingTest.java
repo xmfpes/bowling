@@ -59,10 +59,9 @@ public class bowlingTest {
 		int pin = 10;
 		while(!bowlingManager.isEndGame()) {
 			Random random = new Random();
-			int ball = random.nextInt(pin+1);
-			pin-=ball;
-			int check = bowlingManager.throwBallCurrentTurn(ball);
-			if(check==0) {
+			int ball = random.nextInt(pin)+1;
+			pin = bowlingManager.throwBallCurrentTurn(ball);
+			if(pin==0) {
 				pin = 10;
 			}
 		}

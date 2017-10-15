@@ -51,12 +51,22 @@ public class Frame {
 		StringBuilder st = new StringBuilder();
 		if(this.type == Type.STRIKE) {
 			st.append(this.type.getType());
-			return st.toString();
-		}else if(this.type == Type.SPARE) {
-			st.append(ballList.get(0) + "|/");
-			return st.toString();
+		}else {
+			st.append(ballList.get(0));
 		}
-		st.append(ballList.get(0) + "|" + ballList.get(1));
+		for(int i=1; i<this.ballList.size(); i++) {
+			if(ballList.get(i) == 10) {
+				st.append("|X");
+			}else if(this.type == Type.SPARE){
+				st.append("|/");
+				if(ballList.size() > 2){
+					st.append("|" + ballList.get(2));
+					 break;
+				}
+			}else {
+				st.append("|" + ballList.get(i));
+			}
+		}
 		return st.toString();
 	}
 	
