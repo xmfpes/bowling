@@ -1,5 +1,5 @@
 package com.kyunam.bowling;
 
-public class LastFrame {
+public class LastFrame extends Frame {
 
 }
